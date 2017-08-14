@@ -1,4 +1,4 @@
-const path = require('path')
+const path = require('path');
 
 module.exports = {
   module: {
@@ -31,4 +31,4 @@ module.exports = {
 
     extensions: ['.js', '.json', '.jsx', '.css']
   }
-}
+};
