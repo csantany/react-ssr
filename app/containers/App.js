@@ -1,10 +1,10 @@
-import React from 'react'
-import { Provider } from 'react-redux'
-import { BrowserRouter, StaticRouter } from 'react-router-dom'
-import routes from 'routes'
+import React from 'react';
+import { Provider } from 'react-redux';
+import { BrowserRouter, StaticRouter } from 'react-router-dom';
+import routes from 'routes';
 
 export default ({ server, location, context, store }) => {
-  let router
+  let router;
 
   if (server) {
     router = (
@@ -14,18 +14,18 @@ export default ({ server, location, context, store }) => {
       >
         {routes}
       </StaticRouter>
-    )
+    );
   } else {
     router = (
       <BrowserRouter>
         {routes}
       </BrowserRouter>
-    )
+    );
   }
 
   return (
     <Provider store={store}>
       {router}
     </Provider>
-  )
+  );
 }
