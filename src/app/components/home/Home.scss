@@ -1,0 +1,9 @@
+@import '../../../shared/styles/global';
+
+.home {
+  @include border();
+
+  .link {
+    @include border(blue);
+  }
+}

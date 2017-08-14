@@ -2,7 +2,7 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import App from '../app/containers/App';
 
-export default function serverRender(stats) {
+export default function serverRender() {
   return (req, res, next) => {
     const context = {};
 
@@ -25,6 +25,7 @@ export default function serverRender(stats) {
             <title>React Server-Side Rendering</title>
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width,initial-scale=1">
+            <link rel="stylesheet" href="/css/style.css" />
           </head>
           <body>
             <div id="root">${html}</div>
