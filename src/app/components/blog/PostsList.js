@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 import timeAgo from 'node-time-ago';
+import { isFirstRender } from '../../../shared/utils/data';
 import styles from './PostsList.scss';
 
 class PostsList extends Component {
   render() {
     const { posts } = this.props;
+
+    const is = isFirstRender(posts);
+    console.log('ISSSS', is);
+    if (is) {
+      return null;
+    }
 
     return (
       <div className="PostsList">
