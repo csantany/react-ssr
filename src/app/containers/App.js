@@ -1,7 +1,6 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import { BrowserRouter, StaticRouter } from 'react-router-dom';
-import routes from 'routes';
+import { BrowserRouter, StaticRouter, Switch, Route } from 'react-router-dom';
+import routes from '../../shared/routes';
 
 export default ({ server, location, context, store }) => {
   let router;
@@ -12,20 +11,24 @@ export default ({ server, location, context, store }) => {
         location={location}
         context={context}
       >
-        {routes}
+        <Switch>
+          {routes.map((route, i) => <Route key={i} {...route} />)}
+        </Switch>
       </StaticRouter>
     );
   } else {
     router = (
       <BrowserRouter>
-        {routes}
+        <Switch>
+          {routes.map((route, i) => <Route key={i} {...route} />)}
+        </Switch>
       </BrowserRouter>
     );
   }
 
   return (
-    <Provider store={store}>
+    <div>
       {router}
-    </Provider>
+    </div>
   );
 }

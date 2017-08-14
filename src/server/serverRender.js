@@ -1,24 +1,14 @@
-import { resolve } from 'path';
-import { readFile } from 'fs';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import configureStore from 'redux/store/configureStore';
-import App from 'containers/App';
+import App from '../app/containers/App';
 
 export default function serverRender(stats) {
   return (req, res, next) => {
     const context = {};
 
-    // Compile an initial state
-    const preloadedState = {};
-
-    // Create a new Redux store instance
-    const store = configureStore(preloadedState);
-
     const html = renderToString(
       <App
         server
-        store={store}
         location={req.url}
         context={context}
       />
@@ -37,7 +27,7 @@ export default function serverRender(stats) {
             <meta name="viewport" content="width=device-width,initial-scale=1">
           </head>
           <body>
-            <div id="react-root">${html}</div>
+            <div id="root">${html}</div>
 
             <script>
               window.__PRELOADED_STATE__ = {};

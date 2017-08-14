@@ -1,24 +1,24 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { AppContainer } from 'react-hot-loader'
-import configureStore from 'redux/store/configureStore'
-import App from 'containers/App'
+import React from 'react';
+import { render } from 'react-dom';
+import { AppContainer } from 'react-hot-loader';
+import App from 'containers/App';
 
-const preloadedState = window.__PRELOADED_STATE__
-const store = configureStore(preloadedState)
-const rootElement = document.getElementById('react-root')
+const preloadedState = window.__PRELOADED_STATE__;
+const rootElement = document.getElementById('root');
 
-const render = Component => {
-  ReactDOM.render(
+const renderApp = Component => {
+  render(
     <AppContainer>
-      <Component store={store} />
+      <Component />
     </AppContainer>,
     rootElement
-  )
-}
+  );
+};
 
-render(App)
+renderApp(App);
 
 if (module.hot) {
-  module.hot.accept('containers/App', () => { render(App) })
+  module.hot.accept('containers/App', () => {
+    renderApp(App);
+  });
 }
