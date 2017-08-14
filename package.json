@@ -1,12 +1,9 @@
 {
   "name": "react-ssr",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "private": true,
   "scripts": {
-    "start": "node server.js",
-    "debug": "node --inspect --debug-brk server.js",
+    "start": "node src/server",
+    "debug": "node --inspect --debug-brk src/server",
     "lint": "standard || true",
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rimraf dist/",
@@ -15,8 +12,8 @@
     "bundle-server": "webpack --config webpack/webpack.config.server.js",
     "bundle-client": "webpack --display-modules --config webpack/webpack.config.client.js"
   },
-  "author": "Martin Quintana",
-  "license": "ISC",
+  "author": "Carlos Santana",
+  "license": "MIT",
   "dependencies": {
     "express": "^4.15.2",
     "react": "^15.4.2",
