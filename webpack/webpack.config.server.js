@@ -6,7 +6,7 @@ const commonConfig = require('./webpack.config.common');
 module.exports = webpackMerge(commonConfig, {
   name: 'server',
   entry: './serverRender.js',
-  context: path.resolve(__dirname, '../server'),
+  context: path.resolve(__dirname, '../src/server'),
   output: {
     filename: 'server.js',
     path: path.resolve(__dirname, '../dist'),

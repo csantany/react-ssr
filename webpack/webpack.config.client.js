@@ -10,7 +10,7 @@ module.exports = webpackMerge(commonConfig, {
     'react-hot-loader/patch',
     './client.js'
   ],
-  context: path.resolve(__dirname, '../app'),
+  context: path.resolve(__dirname, '../src/app'),
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, '../dist'),
