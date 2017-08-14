@@ -19,4 +19,4 @@ app.use(webpackDevMiddleware(compiler));
 app.use(webpackHotMiddleware(compiler.compilers.find(compiler => compiler.name === 'client')));
 app.use(webpackHotServerMiddleware(compiler));
 
-app.listen(port, () => console.log(`=== Go to http://localhost:${port} ===`));
+app.listen(port, () => console.log(`Server running on http://localhost:${port}`));
