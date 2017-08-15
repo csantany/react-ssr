@@ -10,7 +10,6 @@ import { fetchInitialData } from '../shared/utils/data';
 export default function serverRender() {
   return (req, res, next) => {
     const currentRoute = routes.find(route => matchPath(req.url, route));
-    console.log('serverRender===', currentRoute, req.url);
     const requestInitialData = fetchInitialData(currentRoute);
 
     Promise.resolve(requestInitialData)

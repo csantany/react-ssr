@@ -15,13 +15,12 @@ export function getInitialData(props) {
 }
 
 export function fetchInitialData(currentRoute) {
-  console.log('currentRoute', currentRoute);
   if (currentRoute && currentRoute.component && currentRoute.component.requestInitialData) {
     return currentRoute.component.requestInitialData();
   } else if (typeof window !== 'undefined') {
-    console.log('entraaaaaa');
     return window.__initialData__;
   }
+  
   return null;
 }
 
