@@ -12,7 +12,8 @@ module.exports = webpackMerge(commonConfig, {
   output: {
     filename: 'server.js',
     path: path.resolve(__dirname, '../public'),
-    libraryTarget: 'commonjs2'
+    libraryTarget: 'commonjs2',
+    publicPath: '/'
   },
   target: 'node',
   externals: [

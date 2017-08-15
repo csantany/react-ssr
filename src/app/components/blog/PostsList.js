@@ -7,9 +7,7 @@ class PostsList extends Component {
   render() {
     const { posts } = this.props;
 
-    const is = isFirstRender(posts);
-    console.log('ISSSS', is);
-    if (is) {
+    if (isFirstRender(posts)) {
       return null;
     }
 

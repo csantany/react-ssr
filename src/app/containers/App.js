@@ -7,10 +7,7 @@ export default ({ server, location, context, store }) => {
 
   if (server) {
     router = (
-      <StaticRouter
-        location={location}
-        context={context}
-      >
+      <StaticRouter location={location} context={context}>
         <Switch>
           {routes.map((route, i) => <Route key={i} {...route} />)}
         </Switch>
