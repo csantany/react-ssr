@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-// import styles from './Home.scss';
+import styles from './Home.scss';
 
 class Home extends Component {
   render() {
     return (
-      <div className="home">
-        Home2
+      <div className={styles.home}>
+        Home
 
-        <p className="link">
+        <p className={styles.link}>
           <Link to="/blog">Blog</Link>
         </p>
       </div>

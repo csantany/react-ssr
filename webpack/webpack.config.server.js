@@ -1,6 +1,8 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const webpackMerge = require('webpack-merge');
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const commonConfig = require('./webpack.config.common');
 
 module.exports = webpackMerge(commonConfig, {
@@ -21,5 +23,11 @@ module.exports = webpackMerge(commonConfig, {
   node: {
     __dirname: false
   },
-  plugins: []
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
+    new ExtractTextPlugin({
+      filename: '../public/css/style.css'
+    })
+  ]
 });

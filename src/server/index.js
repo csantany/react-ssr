@@ -10,10 +10,10 @@ const app = express();
 const compiler = webpack(config);
 const port = process.env.NODE_PORT || 3000;
 
+app.use(express.static(path.join(__dirname, '../../public')));
+
 app.use(webpackDevMiddleware(compiler));
 app.use(webpackHotMiddleware(compiler.compilers.find(compiler => compiler.name === 'client')));
 app.use(webpackHotServerMiddleware(compiler));
-
-app.use(express.static(path.join(__dirname, '../../public')));
 
 app.listen(port, () => console.log(`=== Go to http://localhost:${port} ===`));
