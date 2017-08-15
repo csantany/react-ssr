@@ -20,7 +20,7 @@ export function fetchInitialData(currentRoute) {
   } else if (typeof window !== 'undefined') {
     return window.__initialData__;
   }
-  
+
   return null;
 }
 
