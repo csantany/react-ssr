@@ -12,7 +12,7 @@ class PostsList extends Component {
     }
 
     return (
-      <div className="PostsList">
+      <div className={styles.postsList}>
         <div className="header">
           <div className="title">
             <strong>Blog</strong>

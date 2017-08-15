@@ -6,7 +6,7 @@ class Home extends Component {
   render() {
     return (
       <div className={styles.home}>
-        Home
+        Home3
 
         <p className={styles.link}>
           <Link to="/blog">Blog</Link>
