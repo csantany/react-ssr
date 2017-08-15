@@ -1,11 +1,17 @@
-import { isDefined } from './is';
+import { isDefined, isBrowser } from './is';
 
 export function getInitialData(props) {
+  let initialData = {};
+
   if (props.staticContext && props.staticContext.initialData) {
-    return props.staticContext.initialData;
+    initialData = props.staticContext.initialData;
+  } else if (isBrowser()) {
+    initialData = window.__initialData__;
+
+    delete window.__initialData__;
   }
 
-  return {};
+  return initialData;
 }
 
 export function fetchInitialData(currentRoute) {

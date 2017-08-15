@@ -1,10 +1,16 @@
+// Dependencies
 import React, { Component } from 'react';
+
+// Components
 import PostsList from './PostsList';
+
+// Utils
+import { apiFetch } from '../../../shared/utils/api';
 import { getInitialData } from '../../../shared/utils/data';
 
 class Blog extends Component {
   static requestInitialData() {
-    return fetch('http://localhost:3000/api/blog').then(response => response.json());
+    return apiFetch('/blog');
   }
 
   constructor(props) {
