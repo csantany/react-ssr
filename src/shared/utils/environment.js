@@ -6,6 +6,22 @@ export function getEnvironment(env = false) {
   return isEnvironment(environment) ? environment : 'production';
 }
 
+export function isDevelopment() {
+  return getEnvironment() === 'development';
+}
+
 export function isEnvironment(env) {
   return environments.indexOf(env) !== -1;
+}
+
+export function isProduction() {
+  return getEnvironment() === 'production';
+}
+
+export function isQA() {
+  return getEnvironment() === 'qa';
+}
+
+export function isStage() {
+  return getEnvironment() === 'stage';
 }

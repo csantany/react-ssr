@@ -36,7 +36,7 @@ const clientConfig = webpackMerge(commonConfig('client'), {
   context: path.resolve(__dirname, '../src/app'),
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, '../dist'),
+    path: path.resolve(__dirname, '../public'),
     publicPath: '/'
   },
   target: 'web',

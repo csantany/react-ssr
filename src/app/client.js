@@ -22,4 +22,17 @@ if (module.hot) {
   module.hot.accept('containers/App', () => {
     renderApp(App);
   });
+
+  // const reporter = window.__webpack_hot_middleware_reporter__;
+  // const success = reporter.success;
+  //
+  // reporter.success = () => {
+  //   document.querySelectorAll('link[href][rel=stylesheet]').forEach(link => {
+  //     const nextStyleHref = link.href.replace(/(\?\d+)?$/, `?${Date.now()}`);
+  //
+  //     link.href = nextStyleHref;
+  //   });
+  //
+  //   success();
+  // };
 }
