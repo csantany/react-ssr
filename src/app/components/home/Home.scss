@@ -1,9 +1,7 @@
 @import '../../../shared/styles/global';
 
 .home {
-  @include border(white);
-  color: red;
-  font-size: 24px;
+  @include border();
 
   .link {
     @include border(blue);

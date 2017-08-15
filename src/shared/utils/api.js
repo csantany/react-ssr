@@ -18,19 +18,10 @@ export function apiFetch(endpoint, options = {}, query = false) {
     qs = queryString.stringify(query);
   }
 
-  const getPromise = async () => {
-    try {
-      const fetchOptions = apiOptions(options);
-      const fetchEndpoint = apiEndpoint(endpoint, qs);
-      const response = await fetch(fetchEndpoint, fetchOptions);
+  const fetchOptions = apiOptions(options);
+  const fetchEndpoint = apiEndpoint(endpoint, qs);
 
-      return response.json();
-    } catch (e) {
-      throw e;
-    }
-  };
-
-  return getPromise();
+  return fetch(fetchEndpoint, fetchOptions).then(response => response.json());
 }
 
 export function apiOptions(options = {}) {

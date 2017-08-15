@@ -4,11 +4,11 @@ const nodeExternals = require('webpack-node-externals');
 const path = require('path');
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
-
-// Configuration
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const commonConfig = require('./webpack.config.common');
 
-module.exports = webpackMerge(commonConfig('server'), {
+const serverConfig = webpackMerge(commonConfig('server'), {
   name: 'server',
   entry: './serverRender.js',
   context: path.resolve(__dirname, '../src/server'),
@@ -31,7 +31,9 @@ module.exports = webpackMerge(commonConfig('server'), {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new ExtractTextPlugin({
-      filename: 'css/style.css'
+      filename: '../public/css/style.css'
     })
   ]
 });
+
+module.exports = serverConfig;

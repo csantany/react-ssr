@@ -22,6 +22,6 @@ export function isQA() {
   return getEnvironment() === 'qa';
 }
 
-export function isState() {
+export function isStage() {
   return getEnvironment() === 'stage';
 }

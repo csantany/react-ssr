@@ -1,11 +1,12 @@
-import express from 'express';
-import webpack from 'webpack';
-import path from 'path';
-import webpackDevMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
-import webpackHotServerMiddleware from 'webpack-hot-server-middleware';
-import config from '../../webpack.config';
-import api from './api';
+const express = require('express');
+const webpack = require('webpack');
+const path = require('path');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
+const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
+
+const api = require('./api');
+const config = require('../../webpack.config');
 
 const app = express();
 const compiler = webpack(config);

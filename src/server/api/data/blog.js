@@ -1,4 +1,4 @@
-export function all() {
+function all() {
   return [
     {
       id: 1,
@@ -32,3 +32,5 @@ export function all() {
     },
   ];
 }
+
+module.exports = all;

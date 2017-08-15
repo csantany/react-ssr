@@ -7,14 +7,24 @@ const webpackMerge = require('webpack-merge');
 // Configuration
 const commonConfig = require('./webpack.config.common');
 
+// Environment
+const isDevelopment = process.env.NODE_ENV !== 'production';
+
 // Plugins
-const plugins = [
-  new webpack.HotModuleReplacementPlugin(),
-  new webpack.NoEmitOnErrorsPlugin(),
-  new ExtractTextPlugin({
-    filename: 'css/style.css'
-  })
-];
+const plugins = [];
+
+if (isDevelopment) {
+  plugins.push(
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
+  );
+} else {
+  plugins.push(
+    new ExtractTextPlugin({
+      filename: 'css/style.css'
+    })
+  );
+}
 
 const clientConfig = webpackMerge(commonConfig('client'), {
   name: 'client',
@@ -30,6 +40,7 @@ const clientConfig = webpackMerge(commonConfig('client'), {
     publicPath: '/'
   },
   target: 'web',
+  devtool: 'eval-source-map',
   plugins
 });
 

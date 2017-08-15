@@ -2,8 +2,10 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
 
+// Environment
+const isDevelopment = process.env.NODE_ENV !== 'production';
+
 module.exports = function(type) {
-  // Rules
   const rules = [
     {
       test: /\.js$/,
@@ -11,6 +13,13 @@ module.exports = function(type) {
       exclude: /node_modules/
     },
     {
+      test: /\.(eot|svg|ttf|woff|woff2)$/,
+      use: 'file-loader'
+    }
+  ];
+
+  if (!isDevelopment || type === 'server') {
+    rules.push({
       test: /\.scss$/,
       use: ExtractTextPlugin.extract({
         fallback: 'style-loader',
@@ -19,18 +28,15 @@ module.exports = function(type) {
           'sass-loader'
         ]
       })
-    },
-    {
-      test: /\.json$/,
-      loader: 'json-loader'
-    },
-    {
-      test: /\.(eot|svg|ttf|woff|woff2)$/,
-      use: 'file-loader'
-    }
-  ];
+    });
+  } else {
+    rules.push({
+      test: /\.scss$/,
+      use: ['style-loader', 'css-loader?minimize=true&modules=true&localIdentName=[name]__[local]', 'sass-loader']
+    });
+  }
 
-  const commonConfig = {
+  return {
     module: {
       rules
     },
@@ -43,6 +49,4 @@ module.exports = function(type) {
       extensions: ['.js', '.json', '.jsx', '.css']
     }
   };
-
-  return commonConfig;
 };
