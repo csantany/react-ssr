@@ -5,7 +5,7 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const commonConfig = require('./webpack.config.common');
 
-module.exports = webpackMerge(commonConfig, {
+const serverConfig = webpackMerge(commonConfig('server'), {
   name: 'server',
   entry: './serverRender.js',
   context: path.resolve(__dirname, '../src/server'),
@@ -31,3 +31,5 @@ module.exports = webpackMerge(commonConfig, {
     })
   ]
 });
+
+module.exports = serverConfig;

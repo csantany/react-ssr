@@ -1,10 +1,32 @@
-const webpack = require('webpack');
-const path = require('path');
-const webpackMerge = require('webpack-merge');
+// Dependencies
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path = require('path');
+const webpack = require('webpack');
+const webpackMerge = require('webpack-merge');
+
+// Configuration
 const commonConfig = require('./webpack.config.common');
 
-module.exports = webpackMerge(commonConfig, {
+// Environment
+const isDevelopment = process.env.NODE_ENV !== 'production';
+
+// Plugins
+const plugins = [];
+
+if (isDevelopment) {
+  plugins.push(
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
+  );
+} else {
+  plugins.push(
+    new ExtractTextPlugin({
+      filename: 'css/style.css'
+    })
+  );
+}
+
+const clientConfig = webpackMerge(commonConfig('client'), {
   name: 'client',
   entry: [
     'webpack-hot-middleware/client',
@@ -19,11 +41,7 @@ module.exports = webpackMerge(commonConfig, {
   },
   target: 'web',
   devtool: 'eval-source-map',
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
-    new ExtractTextPlugin({
-      filename: '../public/css/style.css'
-    })
-  ]
+  plugins
 });
+
+module.exports = clientConfig;
