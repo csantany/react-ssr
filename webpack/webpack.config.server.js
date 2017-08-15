@@ -1,8 +1,5 @@
-// Dependencies
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const nodeExternals = require('webpack-node-externals');
 const path = require('path');
-const webpack = require('webpack');
+const nodeExternals = require('webpack-node-externals');
 const webpackMerge = require('webpack-merge');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -14,9 +11,8 @@ const serverConfig = webpackMerge(commonConfig('server'), {
   context: path.resolve(__dirname, '../src/server'),
   output: {
     filename: 'server.js',
-    path: path.resolve(__dirname, '../public'),
-    libraryTarget: 'commonjs2',
-    publicPath: '/'
+    path: path.resolve(__dirname, '../dist'),
+    libraryTarget: 'commonjs2'
   },
   target: 'node',
   externals: [

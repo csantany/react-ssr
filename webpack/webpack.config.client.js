@@ -1,3 +1,4 @@
+
 // Dependencies
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
@@ -36,7 +37,7 @@ const clientConfig = webpackMerge(commonConfig('client'), {
   context: path.resolve(__dirname, '../src/app'),
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, '../public'),
+    path: path.resolve(__dirname, '../dist'),
     publicPath: '/'
   },
   target: 'web',
