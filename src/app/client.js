@@ -1,12 +1,17 @@
+// Dependencies
 import 'babel-polyfill';
 import React from 'react';
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
+
+// Containers
 import App from 'containers/App';
 
+// DOM
 const preloadedState = window.__PRELOADED_STATE__;
 const rootElement = document.getElementById('root');
 
+// App Wrapper
 const renderApp = Component => {
   render(
     <AppContainer>
@@ -16,8 +21,10 @@ const renderApp = Component => {
   );
 };
 
+// Rendering app
 renderApp(App);
 
+// HMR
 if (module.hot) {
   module.hot.accept('containers/App', () => {
     renderApp(App);

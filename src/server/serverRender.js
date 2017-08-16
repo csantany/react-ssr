@@ -1,17 +1,28 @@
-import React from 'react';
-import { renderToString } from 'react-dom/server';
-import App from '../app/containers/App';
+// Dependencies
 import 'isomorphic-fetch';
+import React from 'react';
 import serialize from 'serialize-javascript';
 import { matchPath } from 'react-router-dom';
+import { renderToString } from 'react-dom/server';
+
+// Containers
+import App from '../app/containers/App';
+
+// Routes
 import routes from '../shared/routes';
+
+// Utils
 import { fetchInitialData } from '../shared/utils/data';
 
 export default function serverRender() {
   return (req, res, next) => {
+    // Match the current url with our routes
     const currentRoute = routes.find(route => matchPath(req.url, route));
+
+    // If has data we fetch the initial data
     const requestInitialData = fetchInitialData(currentRoute);
 
+    // We resolve the data promise
     Promise.resolve(requestInitialData)
       .then(initialData => {
         const context = {

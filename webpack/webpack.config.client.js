@@ -1,4 +1,3 @@
-
 // Dependencies
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');

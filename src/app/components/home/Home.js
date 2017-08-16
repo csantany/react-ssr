@@ -1,5 +1,8 @@
+// Dependencies
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+
+// Styles
 import styles from './Home.scss';
 
 class Home extends Component {

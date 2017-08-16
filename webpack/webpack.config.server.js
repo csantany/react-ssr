@@ -1,8 +1,11 @@
+// Dependencies
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const webpackMerge = require('webpack-merge');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+// Webpack Configuration
 const commonConfig = require('./webpack.config.common');
 
 const serverConfig = webpackMerge(commonConfig('server'), {

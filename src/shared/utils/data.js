@@ -1,3 +1,4 @@
+// Utils
 import { isDefined, isBrowser } from './is';
 
 export function getInitialData(props) {

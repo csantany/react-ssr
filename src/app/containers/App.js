@@ -1,25 +1,28 @@
+// Dependencies
 import React from 'react';
 import { BrowserRouter, StaticRouter, Switch, Route } from 'react-router-dom';
+
+// Routes
 import routes from '../../shared/routes';
 
 export default ({ server, location, context, store }) => {
-  let router;
+  const routesMap = routes.map((route, i) => <Route key={i} {...route} />);
+
+  let router = (
+    <BrowserRouter>
+      <Switch>
+        {routesMap}
+      </Switch>
+    </BrowserRouter>
+  );
 
   if (server) {
     router = (
       <StaticRouter location={location} context={context}>
         <Switch>
-          {routes.map((route, i) => <Route key={i} {...route} />)}
+          {routesMap}
         </Switch>
       </StaticRouter>
-    );
-  } else {
-    router = (
-      <BrowserRouter>
-        <Switch>
-          {routes.map((route, i) => <Route key={i} {...route} />)}
-        </Switch>
-      </BrowserRouter>
     );
   }
 

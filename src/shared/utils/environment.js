@@ -1,3 +1,4 @@
+// Available environments
 const environments = ['development', 'stage', 'qa', 'production'];
 
 export function getEnvironment(env = false) {
