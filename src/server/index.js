@@ -27,4 +27,4 @@ app.use(webpackHotMiddleware(compiler.compilers.find(compiler => compiler.name =
 app.use(webpackHotServerMiddleware(compiler));
 
 // Listening
-app.listen(port, () => console.log(`Server running on http://localhost:${port}`));
+app.listen(port, () => console.log(`Server running on http://localhost:${port}`)); // eslint-disable-line

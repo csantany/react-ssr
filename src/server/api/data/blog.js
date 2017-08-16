@@ -29,7 +29,7 @@ function all() {
       title: 'Test 5',
       author: 'Carlos',
       date: new Date(Date.now() - 15000000)
-    },
+    }
   ];
 }
 

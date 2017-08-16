@@ -8,7 +8,6 @@ import { AppContainer } from 'react-hot-loader';
 import App from 'containers/App';
 
 // DOM
-const preloadedState = window.__PRELOADED_STATE__;
 const rootElement = document.getElementById('root');
 
 // App Wrapper

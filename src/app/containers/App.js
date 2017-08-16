@@ -31,4 +31,4 @@ export default ({ server, location, context, store }) => {
       {router}
     </div>
   );
-}
+};
