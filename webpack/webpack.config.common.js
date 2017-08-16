@@ -11,10 +11,6 @@ module.exports = function(type) {
       test: /\.js$/,
       use: 'babel-loader',
       exclude: /node_modules/
-    },
-    {
-      test: /\.(eot|svg|ttf|woff|woff2)$/,
-      use: 'file-loader'
     }
   ];
 
