@@ -8,6 +8,7 @@ import routes from '../../shared/routes';
 export default ({ server, location, context, store }) => {
   const routesMap = routes.map((route, i) => <Route key={i} {...route} />);
 
+  // Client Router
   let router = (
     <BrowserRouter>
       <Switch>
@@ -16,6 +17,7 @@ export default ({ server, location, context, store }) => {
     </BrowserRouter>
   );
 
+  // Server Router
   if (server) {
     router = (
       <StaticRouter location={location} context={context}>
