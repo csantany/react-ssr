@@ -23,3 +23,5 @@ dist/
 public/css/style.css
 public/main.js
 public/server.js
+
+package-lock.json
