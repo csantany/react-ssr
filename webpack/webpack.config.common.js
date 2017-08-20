@@ -9,7 +9,18 @@ module.exports = function(type) {
   const rules = [
     {
       test: /\.js$/,
-      use: 'babel-loader',
+      use: {
+        loader: 'babel-loader',
+        query: {
+          plugins: ['react-hot-loader/babel'],
+          presets: [
+            ['env', { modules: false } ],
+            'stage-0',
+            'stage-2',
+            'react'
+          ]
+        }
+      },
       exclude: /node_modules/
     }
   ];
