@@ -4,6 +4,10 @@ import React from 'react';
 import serialize from 'serialize-javascript';
 import { matchPath } from 'react-router-dom';
 import { renderToString } from 'react-dom/server';
+import { Provider } from 'react-redux';
+
+// Redux Store
+import configureStore from '../shared/configureStore';
 
 // Containers
 import App from '../app/containers/App';
@@ -11,31 +15,35 @@ import App from '../app/containers/App';
 // Routes
 import routes from '../shared/routes';
 
-// Utils
-import { fetchInitialData } from '../shared/utils/data';
-
 export default function serverRender() {
   return (req, res, next) => {
-    // Match the current url with our routes
-    const currentRoute = routes.find(route => matchPath(req.url, route));
+    // Configuring Redux Store
+    const store = configureStore();
 
-    // If has data we fetch the initial data
-    const requestInitialData = fetchInitialData(currentRoute);
+    const promises = routes.reduce((acc, route) => {
+      if (matchPath(req.url, route) && route.component && route.component.initialAction) {
+        acc.push(Promise.resolve(store.dispatch(route.component.initialAction())));
+      }
+
+      return acc;
+    }, []);
 
     // We resolve the data promise
-    Promise.resolve(requestInitialData)
-      .then(initialData => {
-        const context = {
-          initialData
-        };
+    Promise.all(promises)
+      .then(() => {
+        const context = {};
 
         const html = renderToString(
-          <App
-            server
-            location={req.url}
-            context={context}
-          />
+          <Provider store={store}>
+            <App
+              server
+              location={req.url}
+              context={context}
+            />
+          </Provider>
         );
+
+        const initialState = store.getState();
 
         if (context.url) {
           res.redirect(301, context.url);
@@ -45,7 +53,7 @@ export default function serverRender() {
             <html>
               <head>
                 <meta charset="utf-8">
-                <title>React Server-Side Rendering</title>
+                <title>Codejobs</title>
                 <meta http-equiv="X-UA-Compatible" content="IE=edge">
                 <meta name="viewport" content="width=device-width,initial-scale=1">
                 <link rel="stylesheet" href="/css/style.css" />
@@ -54,8 +62,7 @@ export default function serverRender() {
                 <div id="root">${html}</div>
 
                 <script>
-                  window.__PRELOADED_STATE__ = {};
-                  window.__initialData__ = ${serialize(initialData)}
+                  window.initialState = ${serialize(initialState)}
                 </script>
 
                 <script src="/main.js"></script>
