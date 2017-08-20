@@ -1,20 +1,20 @@
 // Dependencies
-const express = require('express');
-const webpack = require('webpack');
-const path = require('path');
-const webpackDevMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
-const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
+import express from 'express';
+import path from 'path';
+import webpack from 'webpack';
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
+import webpackHotServerMiddleware from 'webpack-hot-server-middleware';
 
 // Api
-const api = require('./api');
+import api from './api';
 
 // Webpack Configuration
-const config = require('../../webpack.config');
+import webpackConfig from '../../webpack.config';
 
 // Express app
 const app = express();
-const compiler = webpack(config);
+const compiler = webpack(webpackConfig);
 const port = process.env.NODE_PORT || 3000;
 
 // Public static

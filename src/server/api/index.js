@@ -1,12 +1,10 @@
 // Dependencies
-const express = require('express');
-const all = require('./data/blog');
+import express from 'express';
+import posts from './data/blog';
 
 // Express Router
 const router = express.Router();
 
-router.get('/blog', (req, res) => {
-  res.json(all());
-});
+router.get('/blog', (req, res) => res.json(posts));
 
-module.exports = router;
+export default router;

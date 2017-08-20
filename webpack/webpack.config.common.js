@@ -1,23 +1,28 @@
 // Dependencies
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const path = require('path');
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import path from 'path';
+
+// Package.json
+import pkg from '../package.json';
 
 // Environment
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
-module.exports = function(type) {
+export default type => {
   const rules = [
     {
       test: /\.js$/,
       use: {
         loader: 'babel-loader',
         query: {
-          plugins: ['react-hot-loader/babel'],
           presets: [
-            ['env', { modules: false } ],
-            'stage-0',
-            'stage-2',
-            'react'
+            [
+              'env', {
+                modules: false,
+                node: pkg.engines.node,
+                browsers: pkg.browserslist
+              }
+            ]
           ]
         }
       },

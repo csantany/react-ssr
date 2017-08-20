@@ -1,11 +1,11 @@
 // Dependencies
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const path = require('path');
-const webpack = require('webpack');
-const webpackMerge = require('webpack-merge');
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import path from 'path';
+import webpack from 'webpack';
+import webpackMerge from 'webpack-merge';
 
 // Configuration
-const commonConfig = require('./webpack.config.common');
+import commonConfig from './webpack.config.common';
 
 // Environment
 const isDevelopment = process.env.NODE_ENV !== 'production';
@@ -44,4 +44,4 @@ const clientConfig = webpackMerge(commonConfig('client'), {
   plugins
 });
 
-module.exports = clientConfig;
+export default clientConfig;
