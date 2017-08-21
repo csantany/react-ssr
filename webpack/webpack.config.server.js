@@ -1,12 +1,12 @@
 // Dependencies
-import path from 'path';
-import nodeExternals from 'webpack-node-externals';
-import webpackMerge from 'webpack-merge';
-import webpack from 'webpack';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
+const path = require('path');
+const nodeExternals = require('webpack-node-externals');
+const webpackMerge = require('webpack-merge');
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // Webpack Configuration
-import commonConfig from './webpack.config.common';
+const commonConfig = require('./webpack.config.common');
 
 const serverConfig = webpackMerge(commonConfig('server'), {
   name: 'server',
@@ -31,8 +31,14 @@ const serverConfig = webpackMerge(commonConfig('server'), {
     new webpack.NoEmitOnErrorsPlugin(),
     new ExtractTextPlugin({
       filename: '../public/css/style.css'
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        screw_ie8: true,
+        warnings: false
+      }
     })
   ]
 });
 
-export default serverConfig;
+module.exports = serverConfig;

@@ -1,11 +1,11 @@
 // Dependencies
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import path from 'path';
-import webpack from 'webpack';
-import webpackMerge from 'webpack-merge';
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path = require('path');
+const webpack = require('webpack');
+const webpackMerge = require('webpack-merge');
 
 // Configuration
-import commonConfig from './webpack.config.common';
+const commonConfig = require('./webpack.config.common');
 
 // Environment
 const isDevelopment = process.env.NODE_ENV !== 'production';
@@ -22,6 +22,12 @@ if (isDevelopment) {
   plugins.push(
     new ExtractTextPlugin({
       filename: 'css/style.css'
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        screw_ie8: true,
+        warnings: false
+      }
     })
   );
 }
@@ -44,4 +50,4 @@ const clientConfig = webpackMerge(commonConfig('client'), {
   plugins
 });
 
-export default clientConfig;
+module.exports = clientConfig;
