@@ -1,6 +1,5 @@
 // Dependencies
 import isomorphicFetch from 'isomorphic-fetch';
-import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
@@ -15,8 +14,7 @@ export default function configureStore(initialState) {
     thunk,
     injectMiddleware({
       fetch: isomorphicFetch
-    }),
-    reduxImmutableStateInvariant()
+    })
   ];
 
   return createStore(

@@ -8,6 +8,32 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 // Webpack Configuration
 const commonConfig = require('./webpack.config.common');
 
+// Environment
+const isDevelopment = process.env.NODE_ENV !== 'production';
+
+const plugins = [
+  new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+  new ExtractTextPlugin({
+    filename: '../public/css/style.css'
+  }),
+  new webpack.optimize.UglifyJsPlugin({
+    output: {
+      comments: false
+    },
+    compress: {
+      screw_ie8: true,
+      warnings: false
+    }
+  })
+];
+
+if (isDevelopment) {
+  plugins.push(
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
+  );
+}
+
 const serverConfig = webpackMerge(commonConfig('server'), {
   name: 'server',
   entry: './serverRender.js',
@@ -26,19 +52,7 @@ const serverConfig = webpackMerge(commonConfig('server'), {
   node: {
     __dirname: false
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
-    new ExtractTextPlugin({
-      filename: '../public/css/style.css'
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        screw_ie8: true,
-        warnings: false
-      }
-    })
-  ]
+  plugins
 });
 
 module.exports = serverConfig;

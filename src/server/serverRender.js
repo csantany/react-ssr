@@ -1,7 +1,6 @@
 // Dependencies
 import 'isomorphic-fetch';
 import React from 'react';
-import serialize from 'serialize-javascript';
 import { matchPath } from 'react-router-dom';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
@@ -62,7 +61,7 @@ export default function serverRender() {
                 <div id="root">${html}</div>
 
                 <script>
-                  window.initialState = ${serialize(initialState)}
+                  window.initialState = ${JSON.stringify(initialState)}
                 </script>
 
                 <script src="/main.js"></script>

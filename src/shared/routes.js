@@ -1,9 +1,9 @@
 // Components
-import Home from 'components/home/Home';
-import About from 'components/about/About';
+import Home from '../app/components/home/Home';
+import About from '../app/components/about/About';
 
 // Containers
-import Blog from 'containers/blog/Blog';
+import Blog from '../app/containers/blog/Blog';
 
 const routes = [
   {
