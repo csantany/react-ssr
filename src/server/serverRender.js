@@ -42,6 +42,7 @@ export default function serverRender() {
           </Provider>
         );
 
+
         const initialState = store.getState();
 
         if (context.url) {
