@@ -23,12 +23,18 @@ const plugins = [
   }),
   new webpack.optimize.CommonsChunkPlugin({
     name: 'vendor',
-    minChunks: module => module.context && module.context.indexOf('node_modules') !== -1
+    minChunks: (m) => /node_modules/.test(m.context)
   })
 ];
 
 // Entry
-const entry = [];
+const entry = {
+  main: [],
+  vendor: [
+    'webpack-hot-middleware/client',
+    'react-hot-loader/patch'
+  ]
+};
 
 if (isDevelopment) {
   plugins.push(
@@ -36,11 +42,7 @@ if (isDevelopment) {
     new webpack.NoEmitOnErrorsPlugin()
   );
 
-  if (runAnalyzer) {
-    plugins.push(new BundleAnalyzerPlugin());
-  }
-
-  entry.push(
+  entry.main.push(
     'webpack-hot-middleware/client',
     'react-hot-loader/patch'
   );
@@ -63,11 +65,14 @@ if (isDevelopment) {
   );
 }
 
-entry.push('./client.js');
+entry.main.push('./client.js');
 
 const clientConfig = webpackMerge(commonConfig('client'), {
   name: 'client',
-  entry,
+  entry: {
+    main: entry.main,
+    vendor: entry.vendor
+  },
   context: path.resolve(__dirname, '../src/app'),
   output: {
     filename: '[name].bundle.js',
