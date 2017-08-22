@@ -17,11 +17,21 @@ const plugins = [
   new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   new ExtractTextPlugin({
     filename: 'css/style.css'
+  }),
+  new webpack.optimize.CommonsChunkPlugin({
+    name: 'vendor',
+    minChunks: (m) => /node_modules/.test(m.context)
   })
 ];
 
 // Entry
-const entry = [];
+const entry = {
+  main: [],
+  vendor: [
+    'webpack-hot-middleware/client',
+    'react-hot-loader/patch'
+  ]
+};
 
 if (isDevelopment) {
   plugins.push(
@@ -30,7 +40,7 @@ if (isDevelopment) {
     // new BundleAnalyzerPlugin()
   );
 
-  entry.push(
+  entry.main.push(
     'webpack-hot-middleware/client',
     'react-hot-loader/patch'
   );
@@ -60,14 +70,17 @@ if (isDevelopment) {
   );
 }
 
-entry.push('./client.js');
+entry.main.push('./client.js');
 
 const clientConfig = webpackMerge(commonConfig('client'), {
   name: 'client',
-  entry,
+  entry: {
+    main: entry.main,
+    vendor: entry.vendor
+  },
   context: path.resolve(__dirname, '../src/app'),
   output: {
-    filename: '[name].js',
+    filename: '[name].bundle.js',
     path: path.resolve(__dirname, '../public'),
     publicPath: '/'
   },
