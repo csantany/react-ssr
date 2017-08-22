@@ -5,7 +5,7 @@
     "build": "npm run clean && npm run build-client && npm run build-server",
     "build-client": "NODE_ENV=production BABEL_ENV=production webpack --progress --display-modules --config webpack/webpack.config.client.js",
     "build-server": "NODE_ENV=production BABEL_ENV=production webpack --progress --config webpack/webpack.config.server.js",
-    "clean": "rimraf dist/",
+    "clean": "rimraf dist/ && rimraf public/app/",
     "lint": "eslint src",
     "postmerge": "npm install",
     "postrewrite": "npm install",

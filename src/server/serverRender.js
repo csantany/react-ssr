@@ -65,8 +65,8 @@ export default function serverRender() {
                   window.initialState = ${JSON.stringify(initialState)}
                 </script>
 
-                <script src="/vendor.bundle.js"></script>
-                <script src="/main.bundle.js"></script>
+                <script src="/app/vendor.bundle.js"></script>
+                <script src="/app/main.bundle.js"></script>
               </body>
             </html>
           `);
