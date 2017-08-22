@@ -42,6 +42,7 @@ export default function serverRender() {
           </Provider>
         );
 
+
         const initialState = store.getState();
 
         if (context.url) {
@@ -64,7 +65,8 @@ export default function serverRender() {
                   window.initialState = ${JSON.stringify(initialState)}
                 </script>
 
-                <script src="/main.js"></script>
+                <script src="/vendor.bundle.js"></script>
+                <script src="/main.bundle.js"></script>
               </body>
             </html>
           `);

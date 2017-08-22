@@ -21,8 +21,7 @@ dist/
 *.hot-update.js
 *.hot-update.json
 public/css/style.css
-public/main.js
-public/main.js.gz
-public/server.js
+public/*.bundle.js
+public/*.bundle.js.gz
 
 package-lock.json
