@@ -5,7 +5,6 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackHotServerMiddleware from 'webpack-hot-server-middleware';
-import compression from 'compression';
 
 // Api
 import api from './api';
@@ -22,9 +21,6 @@ const compiler = webpack(webpackConfig);
 const port = process.env.NODE_PORT || 3000;
 
 if (!isDevelopment) {
-  // Compression
-  app.use(compression());
-
   app.get('*.js', (req, res, next) => {
     req.url = `${req.url}.gz`;
     res.set('Content-Encoding', 'gzip');

@@ -17,9 +17,6 @@ const rootElement = document.getElementById('root');
 // Configuring Redux Store
 const store = configureStore(window.initialState);
 
-// Environment
-const isDevelopment = process.env.NODE_ENV !== 'production';
-
 // App Wrapper
 const renderApp = Component => {
   render(
@@ -36,7 +33,7 @@ const renderApp = Component => {
 renderApp(App);
 
 // HMR
-if (isDevelopment && module.hot) {
+if (module.hot) {
   module.hot.accept('containers/App', () => {
     renderApp(require('containers/App').default);
   });
