@@ -13,14 +13,15 @@ const output = require('./configuration/output');
 const plugins = require('./configuration/plugins');
 const target = require('./configuration/target');
 
-const serverConfig = webpackMerge(commonConfig('server'), {
-  context: context('server'),
-  entry: entry('server'),
-  externals: externals(),
-  name: name('server'),
-  output: output('server'),
-  plugins: plugins(),
-  target: target('server')
-});
+// Type of Configuration
+const type = 'server';
 
-module.exports = serverConfig;
+module.exports = webpackMerge(commonConfig(type), {
+  context: context(type),
+  entry: entry(type),
+  externals: externals(type),
+  name: name(type),
+  output: output(type),
+  plugins: plugins(type),
+  target: target(type)
+});
