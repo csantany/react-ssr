@@ -3,7 +3,7 @@ export function getCurrentDevice(ua) {
 }
 
 export function isBot(ua) {
-  return /bot|googlebot|google|baidu|bing|msn|duckduckgo|teoma|slurp|yandex|crawler|spider|robot|crawling/i.test(ua);
+  return /curl|bot|googlebot|google|baidu|bing|msn|duckduckgo|teoma|slurp|crawler|spider|robot|crawling/i.test(ua);
 }
 
 export function isDesktop(ua) {
