@@ -1,5 +1,6 @@
 // Dependencies
 import express from 'express';
+import open from 'open';
 import path from 'path';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
@@ -74,4 +75,8 @@ if (!isDevelopment) {
 app.use(webpackHotServerMiddleware(compiler));
 
 // Listening
-app.listen(port, () => console.log(`Server running on http://localhost:${port}`)); // eslint-disable-line
+app.listen(port, err => {
+  if (!err) {
+    open(`http://localhost:${port}`);
+  }
+});

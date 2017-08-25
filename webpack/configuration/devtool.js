@@ -1,1 +1,1 @@
-module.exports = () => 'eval';
+export default () => 'eval';

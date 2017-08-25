@@ -1,22 +1,14 @@
 // Dependencies
-const webpackMerge = require('webpack-merge');
+import webpackMerge from 'webpack-merge';
 
 // Webpack Configuration
-const commonConfig = require('./webpack.config.common');
-
-// Configuration
-const context = require('./configuration/context');
-const devtool = require('./configuration/devtool');
-const entry = require('./configuration/entry');
-const name = require('./configuration/name');
-const output = require('./configuration/output');
-const plugins = require('./configuration/plugins');
-const target = require('./configuration/target');
+import commonConfig from './webpack.config.common';
+import { context, devtool, entry, name, output, plugins, target } from './configuration';
 
 // Type of Configuration
 const type = 'client';
 
-module.exports = webpackMerge(commonConfig(type), {
+export default webpackMerge(commonConfig(type), {
   context: context(type),
   devtool: devtool(type),
   entry: entry(type),

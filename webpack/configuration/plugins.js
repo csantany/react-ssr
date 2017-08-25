@@ -1,12 +1,12 @@
 // Dependencies
-const CompressionPlugin = require('compression-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const webpack = require('webpack');
+import CompressionPlugin from 'compression-webpack-plugin';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import webpack from 'webpack';
 
 // Environment
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
-module.exports = type => {
+export default type => {
   const plugins = [
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new ExtractTextPlugin({

@@ -1,7 +1,7 @@
 // Dependencies
-const path = require('path');
+import path from 'path';
 
-module.exports = type => {
+export default type => {
   if (type === 'server') {
     return {
       filename: 'server.js',

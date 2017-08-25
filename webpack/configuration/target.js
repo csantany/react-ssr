@@ -1,1 +1,1 @@
-module.exports = type => type === 'server' ? 'node' : 'web';
+export default type => type === 'server' ? 'node' : 'web';

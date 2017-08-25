@@ -1,13 +1,13 @@
 // Dependencies
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 // Package.json
-const pkg = require('../../package.json');
+import pkg from '../../package.json';
 
 // Environment
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
-module.exports = type => {
+export default type => {
   const rules = [
     {
       test: /\.js$/,

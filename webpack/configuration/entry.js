@@ -1,7 +1,7 @@
 // Environment
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
-module.exports = type => {
+export default type => {
   if (type === 'server') {
     return './serverRender.js';
   }

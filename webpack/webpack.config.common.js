@@ -1,9 +1,7 @@
 // Configuration
-const rules = require('./configuration/rules');
-const modules = require('./configuration/modules');
-const extensions = require('./configuration/extensions');
+import { rules, extensions, modules } from './configuration';
 
-module.exports = type => {
+export default type => {
   return {
     module: {
       rules: rules(type)

@@ -1,1 +1,1 @@
-module.exports = type => type === 'server' ? type : 'client';
+export default type => type === 'server' ? type : 'client';
