@@ -66,7 +66,7 @@ if (!isDevelopment) {
 
     app.use(serverRender());
   } catch (e) {
-    console.log(e); // eslint-disable-line
+    throw e;
   }
 }
 
