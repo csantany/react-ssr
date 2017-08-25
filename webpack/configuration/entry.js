@@ -1,0 +1,28 @@
+// Environment
+const isDevelopment = process.env.NODE_ENV !== 'production';
+
+module.exports = type => {
+  if (type === 'server') {
+    return './serverRender.js';
+  }
+
+  const entry = {
+    main: []
+  };
+
+  if (isDevelopment) {
+    entry.main.push(
+      'webpack-hot-middleware/client',
+      'react-hot-loader/patch'
+    );
+
+    entry.vendor = [
+      'webpack-hot-middleware/client',
+      'react-hot-loader/patch'
+    ];
+  }
+
+  entry.main.push('./client.js');
+
+  return entry;
+};
