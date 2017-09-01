@@ -5,8 +5,8 @@ import { API } from '../../../shared/constants/api';
 import { apiFetch } from '../../../shared/utils/api';
 
 class BlogApi {
-  static getAllPosts(query = {}) {
-    return apiFetch(API.BLOG.POSTS, {}, query);
+  static getAllPosts(query = {}, fetchingFrom = 'client') {
+    return apiFetch(API.BLOG.POSTS, { fetchingFrom }, query);
   }
 }
 

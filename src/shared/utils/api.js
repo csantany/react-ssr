@@ -1,25 +1,33 @@
 // Dependencies
 import queryString from 'query-string';
 
-export function apiEndpoint(endpoint, qs) {
+export function apiEndpoint(endpoint, qs, fetchingFrom) {
   let query = '';
+  let apiUrl = '';
 
   if (qs) {
     query = `?${qs}`;
   }
 
-  return `/api/${endpoint}${query}`;
+  if (fetchingFrom === 'server') {
+    apiUrl = 'http://localhost:3000';
+  }
+
+  return `${apiUrl}/api/${endpoint}${query}`;
 }
 
 export function apiFetch(endpoint, options = {}, query = false) {
   let qs;
+  const { fetchingFrom = 'client' } = options;
+
+  delete options.fetchFrom;
 
   if (query) {
     qs = queryString.stringify(query);
   }
 
   const fetchOptions = apiOptions(options);
-  const fetchEndpoint = apiEndpoint(endpoint, qs);
+  const fetchEndpoint = apiEndpoint(endpoint, qs, fetchingFrom);
 
   return fetch(fetchEndpoint, fetchOptions).then(response => response.json());
 }

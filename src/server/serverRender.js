@@ -24,7 +24,7 @@ export default function serverRender() {
 
     const promises = routes.reduce((acc, route) => {
       if (matchPath(req.url, route) && route.component && route.component.initialAction) {
-        acc.push(Promise.resolve(store.dispatch(route.component.initialAction())));
+        acc.push(Promise.resolve(store.dispatch(route.component.initialAction('server'))));
       }
 
       return acc;

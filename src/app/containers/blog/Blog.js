@@ -12,13 +12,13 @@ import { fetchPosts } from './actions';
 import { isFirstRender } from '../../../shared/utils/data';
 
 class Blog extends Component {
-  static initialAction() {
-    return fetchPosts();
+  static initialAction(fetchingFrom) {
+    return fetchPosts(fetchingFrom);
   }
 
   componentDidMount() {
     if (isFirstRender(this.props.posts)) {
-      this.props.dispatch(Blog.initialAction());
+      this.props.dispatch(Blog.initialAction('client'));
     }
   }
 
