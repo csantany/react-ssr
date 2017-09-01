@@ -8,7 +8,7 @@ export function apiEndpoint(endpoint, qs) {
     query = `?${qs}`;
   }
 
-  return `http://localhost:3000/api/${endpoint}${query}`;
+  return `/api/${endpoint}${query}`;
 }
 
 export function apiFetch(endpoint, options = {}, query = false) {
